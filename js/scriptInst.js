@@ -1985,44 +1985,44 @@ const downButton = document.querySelector('#dB');
 const rightButton = document.querySelector('#rB');
 
 //touchstart
-leftButton.addEventListener('mousedown', function (event) {
+leftButton.addEventListener('touchstart', function (event) {
   turning = -1;
   //console.log("left button")
 });
-upButton.addEventListener('mousedown', function (event) {
+upButton.addEventListener('touchstart', function (event) {
   moving = 1;        
   ChangeAnimation(1);  
   //console.log("up button")
 });
-downButton.addEventListener('mousedown', function (event) {
+downButton.addEventListener('touchstart', function (event) {
   moving = -1;
   ChangeAnimation(2);
   //console.log("down button")
 });
-rightButton.addEventListener('mousedown', function (event) {
+rightButton.addEventListener('touchstart', function (event) {
   turning = 1;
   //console.log("right button")
 });
 
 
 //touchend
-leftButton.addEventListener('mouseup', function (event) {
+leftButton.addEventListener('touchend', function (event) {
   turning = 0;
   //console.log("left buttonmouseup ")
 });
-upButton.addEventListener('mouseup', function (event) {
+upButton.addEventListener('touchend', function (event) {
   speed = 0;
   moving = 0;        
   ChangeAnimation(0);   
   //console.log("up button mouseup")
 });
-downButton.addEventListener('mouseup', function (event) {
+downButton.addEventListener('touchend', function (event) {
   speed = 0;
   moving = 0;        
   ChangeAnimation(0);   
   //console.log("down button mouseup")
 });
-rightButton.addEventListener('mouseup', function (event) {
+rightButton.addEventListener('touchend', function (event) {
   turning = 0;
   //console.log("right button mouseup")
 });
