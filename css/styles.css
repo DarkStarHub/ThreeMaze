@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    overflow: hidden;
+}
+
+.webgl{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.touchControls{
+    position: absolute;
+    top: 56%;
+    left: 5%;
+    width: 20vw;
+    height: 15vw;
+    /*background-color: red;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.buttonBox{   
+    position: relative;
+    width: 32%;
+    height: 100%;
+    /*background-color: blueviolet;*/
+    /*display: inline-block;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.tButtonUp{
+    position: relative;
+    top: 5%;
+    /*left: 36%;*/
+    width: 6vw;
+    height: 6vw;
+    /*background-color: blue;*/
+}
+
+.buttonImg{
+    width: 100%;
+    height: 100%;
+}
+
+.tButtonDown{
+    position: relative;
+    top: 12%;
+    /*left: 36%;*/
+    width: 6vw;
+    height: 6vw;
+   /* background-color: blue;*/
+}
+.downButtonImg{
+    transform: rotate(180deg);
+    width: 100%;
+    height: 100%;
+}
+
+.tButtonSide{
+    position: relative;
+    top: 36%;
+    /*left: 50%;*/
+    width: 6vw;
+    height: 6vw;
+    /*background-color: blue;*/
+}
+
+.keyHint{
+    position: absolute;
+    top: 88%;
+    left: 11.5%;
+    font-size: x-large;
+    
+}
