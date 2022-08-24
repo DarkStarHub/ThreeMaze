@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
     
     <link rel="stylesheet" href="css/styles.css"></head>
     <script src="js/stats.min.js"></script>
@@ -11,28 +11,54 @@
 <body>
     <canvas class="webgl"></canvas>
 
+    <div>
+        <button type="button" id="reset" class="resetButton" >RESET</button>   
+    </div>
+
     <div class="touchControls">
-        <div class="buttonBox">
+        <div class="buttonBox">            
            <div class="tButtonSide">
-            <img class="buttonImg" id="lB" src="assets/UI/lTButton.fw.png" alt="">
+           <!--<img class="buttonImg" id="lB" src="assets/UI/lTButton.fw.png" alt="">-->
+              <!--<input type="image" class="buttonImg" id="lB" src="assets/UI/lTButton.fw.png">-->
+                <button type="button" id="lB" class="cntButton leftImg" ></button>          
            </div>
         </div>
-        <div class="buttonBox">
-            <div class="tButtonUp">
-                <img class="buttonImg" id="uB" src="assets/UI/upArrow.fw.png" alt="">
+        <!--<div class="buttonBox">
+            <div class="tButtonUp">              
+               <button type="button" id="uB" class="cntButton upImg" ></button>   
             </div>       
-            <div class="tButtonDown">
-                <img class="downButtonImg" id="dB" src="assets/UI/upArrow.fw.png" alt="">
+            <div class="tButtonDown">                
+                <button type="button" id="dB" class="cntButton downImg" ></button>  
             </div>
-        </div>
+        </div>-->
         <div class="buttonBox">
             <div class="tButtonSide">
-                <img class="buttonImg" id="rB" src="assets/UI/rTButton.fw.png" alt="">
+                <!--<img class="buttonImg" id="rB" src="assets/UI/rTButton.fw.png" alt="">-->
+                <button type="button" id="rB" class="cntButton rightImg" ></button>  
             </div>
         </div>        
     </div>
 
-    <!--<div class="keyHint">(w,a,s,d)</div>-->
+    <div class="forwardControls">
+        <!--<div class="buttonBox">
+            <div class="tButtonUp">              
+               <button type="button" id="uB" class="cntButton upImg" ></button>   
+            </div>       
+            <div class="tButtonDown">               
+                <button type="button" id="dB" class="cntButton downImg" ></button>  
+            </div>
+        </div>-->
+        <div class="buttonBox">            
+            <div class="tButtonSide">           
+                <button type="button" id="uB" class="cntButton upImg" ></button>          
+            </div>
+         </div>         
+         <div class="buttonBox">
+             <div class="tButtonSide">                
+                <button type="button" id="dB" class="cntButton downImg" ></button>  
+             </div>
+         </div> 
+    </div>
     
 
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.js"></script>-->
