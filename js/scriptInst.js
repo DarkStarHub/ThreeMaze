@@ -1,13 +1,14 @@
+//https://darkstarhub.github.io/ThreeMaze/
 
 ////imports=======================================================
 ////greensock import
 const gsap = window.gsap;
-////dat.gui import
-const datG = window.dat.gui;
+
+//const datG = window.dat.gui;
 
 const sizes = {width:window.innerWidth,height:window.innerHeight};
 
-const dGui = new dat.GUI();
+//const dGui = new dat.GUI();
 ////imports=======================================================
 
 
@@ -85,7 +86,6 @@ window.addEventListener('resize',()=>
 
 
 
-
 ////stats=========================================================
 function createStats() {
   var stats = new Stats();
@@ -139,12 +139,12 @@ scene.background = bgTexture;
 
 
 ////Mine==================================================================
-const floorTileTexture = textureLoader.load('assets/grass_4.png');
+/*const floorTileTexture = textureLoader.load('assets/grass_4.png');
 floorTileTexture.repeat.x = 6;
 floorTileTexture.repeat.y = 6;
 floorTileTexture.wrapS = THREE.RepeatWrapping;
 floorTileTexture.wrapT = THREE.RepeatWrapping;
-const floorMat = new THREE.MeshStandardMaterial({map:floorTileTexture})
+const floorMat = new THREE.MeshStandardMaterial({map:floorTileTexture})*/
 
 const mWidth = 10;
 const mLength = 10;
@@ -509,11 +509,12 @@ const wallMat = new THREE.MeshStandardMaterial({
     roughness: 0.8,    
   });
 
+  /*
 const colorParam = {color: '#ffffff'};
 dGui.addColor(colorParam,"color").onChange(()=>
 {
   wallMat.color.set(colorParam.color);
-});
+});*/
 
 //this will call calcLoop 
 function CalculateMaze()
@@ -1321,7 +1322,57 @@ function BuildPlatform(xPos,zPos)
       ///body.addEventListener('collide',playHitSound);
       world.addBody(body);  
 
-      
+
+      const sideWall = new CANNON.Box(new CANNON.Vec3(5*14,20,3)); 
+      const lWall = new CANNON.Body({
+      mass: 0,
+      position: new CANNON.Vec3(newObj.position.x-73,newObj.position.y,newObj.position.z),     
+      shape: sideWall,
+      // material: defaultMaterial
+      });      
+
+      lWall.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), Math.PI/2)
+      //body.position.copy(position);
+      ///body.addEventListener('collide',playHitSound);
+      world.addBody(lWall);   
+
+     
+      const rWall = new CANNON.Body({
+      mass: 0,
+      position: new CANNON.Vec3(newObj.position.x+73,newObj.position.y,newObj.position.z),     
+      shape: sideWall,
+      // material: defaultMaterial
+      });      
+
+      rWall.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), Math.PI/2)
+      //body.position.copy(position);
+      ///body.addEventListener('collide',playHitSound);
+      world.addBody(rWall); 
+
+
+      const backWall = new CANNON.Body({
+        mass: 0,
+        position: new CANNON.Vec3(newObj.position.x,newObj.position.y,newObj.position.z+73),     
+        shape: sideWall,
+        // material: defaultMaterial
+        });      
+  
+        //rWall.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), Math.PI/2)
+        //body.position.copy(position);
+        ///body.addEventListener('collide',playHitSound);
+        world.addBody(backWall); 
+  
+        const frontWall = new CANNON.Body({
+          mass: 0,
+          position: new CANNON.Vec3(newObj.position.x,newObj.position.y,newObj.position.z-73),     
+          shape: sideWall,
+          // material: defaultMaterial
+          });      
+    
+          //rWall.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), Math.PI/2)
+          //body.position.copy(position);
+          ///body.addEventListener('collide',playHitSound);
+          world.addBody(frontWall);       
    
     }
   );
@@ -1984,49 +2035,66 @@ const upButton = document.querySelector('#uB');
 const downButton = document.querySelector('#dB');
 const rightButton = document.querySelector('#rB');
 
-//touchstart
+//touchstart  //mousedown
 leftButton.addEventListener('touchstart', function (event) {
+  event.preventDefault();
   turning = -1;
   //console.log("left button")
 });
 upButton.addEventListener('touchstart', function (event) {
+  event.preventDefault();
   moving = 1;        
   ChangeAnimation(1);  
   //console.log("up button")
 });
 downButton.addEventListener('touchstart', function (event) {
+  event.preventDefault();
   moving = -1;
   ChangeAnimation(2);
   //console.log("down button")
 });
 rightButton.addEventListener('touchstart', function (event) {
+ event.preventDefault();
   turning = 1;
   //console.log("right button")
 });
 
 
-//touchend
+//touchend  //mouseup
 leftButton.addEventListener('touchend', function (event) {
+  event.preventDefault();
   turning = 0;
   //console.log("left buttonmouseup ")
 });
 upButton.addEventListener('touchend', function (event) {
+  event.preventDefault();
   speed = 0;
   moving = 0;        
   ChangeAnimation(0);   
   //console.log("up button mouseup")
 });
 downButton.addEventListener('touchend', function (event) {
+  event.preventDefault();
   speed = 0;
   moving = 0;        
   ChangeAnimation(0);   
   //console.log("down button mouseup")
 });
 rightButton.addEventListener('touchend', function (event) {
+  event.preventDefault();
   turning = 0;
   //console.log("right button mouseup")
 });
 ////touch controls===========================================================
+
+
+const resetBut = document.querySelector('.resetButton');
+
+
+resetBut.addEventListener('click', function (event) {
+  console.log("clicked")
+  window.location.reload();
+});
 
 
 
@@ -2436,988 +2504,6 @@ gameLoop();
 ////main game loop==================================================================
 
 
-
-
-
-
-
-
-
-
-
-////================================================================================
-////================================================================================
-
-
-
-
-
-
-/*
-// main player model with idle
-gltfLoader.load(
-  'assets/Skele/skeleIdle2.glb',
-  (gltf) =>
-  {
-    //console.log(gltf.scene);
-    //const newObj = gltf.scenes[0].children[0];
-
-    gltf.scene.children[0].children[1].material.envMapIntensity = 6;
-    gltf.scene.children[0].children[2].material.envMapIntensity = 6;
-    gltf.scene.children[0].children[3].material.envMapIntensity = 6;
-    
-
-    const playerObj = gltf.scene;
-    playerObj.position.x = 10;
-    playerObj.position.y = 0;
-    playerObj.position.z = 20;  
-    playerObj.rotation.y = Math.PI;
-    playerObj.scale.set(1.4,1.4,1.4)
-
-    gltf.scene.traverse( ( object ) => {
-
-      object.frustumCulled = false;
-  
-  } );
-    
-       
-
-    //optimize this
-    skeleMixer = new THREE.AnimationMixer(playerObj);
-    aniMixers.push(skeleMixer);
-    idleAction = skeleMixer.clipAction(gltf.animations[0]);
-    idleAction.setLoop(THREE.LoopRepeat);
-    idleAction.enable = true;
-    
-    skeleAnimArr.push(idleAction);
-    //animTest.setLoop(THREE.LoopRepeat);
-    //animTest.clampWhenFinished = true;
-    ChangeAnimation(0);
-    
-    
-        
-    scene.add(playerObj)
-
-
-    
-    const charShape = new CANNON.Sphere(1);   
-    charBody = new CANNON.Body({
-    mass: 1,    
-    position: new CANNON.Vec3(0,0,0),
-    shape: charShape,
-    //material: defaultMaterial
-    });
-  
-    charBody.fixedRotation = true;
-    charBody.angularDamping = 1;
-
-
-    //charBody.position.copy(charSphere.position);
-    //charBody.position.copy(playerObj.position);
-    charBody.position.set(10,1,20);  //(10,1,20)   //island -54,11,-38.5
-    world.addBody(charBody);  
-
-
-    
-    objectsToUpdate.push({
-      //mesh: charSphere,
-      mesh: playerObj,
-      body: charBody
-    });
-    
-    
-    
-
-
-    camSpot = new THREE.Mesh(
-    new THREE.SphereBufferGeometry(.2,4,4),
-    baseMat2);
-    camSpot.castShadow = true;
-    //camSpot.scale.set(1,1,2);
-    camSpot.position.x = 0;
-    camSpot.position.y = 4;//5.7    
-    camSpot.position.z = -6;//5
-    camSpot.rotation.y -= Math.PI;
-    camSpot.rotateX((Math.PI/180)*-20);//-25
-    camSpot.visible = false;
-    scene.add(camSpot);
-    //camSpot.parent = charSphere;
-    camSpot.parent = playerObj;
-
-
-    LoadPlayerAnimations(skeleMixer);
-    //// swing the camera down in and begin game when this loads  
- 
-  }
-);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function BuildEWall(xPos,zPos,incCellObj)
-{  
-  let loadString = RetLoadString();
- 
-  gltfLoader.load(
-    loadString,
-    //'assets/eWall.gltf',
-    (gltf) =>
-    {
-      const newWall = gltf.scenes[0].children[0];
-      //newWall.position.x = xPos*10;
-      newWall.position.x = xPos*10 +4.8;
-      newWall.position.y = 0;
-      newWall.position.z = (zPos*10)*-1; 
-      newWall.rotation.z = Math.PI / 2;
-      newWall.scale.set(1,1,1);            
-      scene.add(newWall);
-
-      //incCellGroup.add(newEWall); 
-      incCellObj.ewObj = newWall;
-      //incCellObj.cellG.add(newWall);
-      
-      //const EWshape = new CANNON.Box(new CANNON.Vec3(.48,2.5,5));  
-      const body = new CANNON.Body({
-      mass: 0,
-      //position: new CANNON.Vec3(newWall.position.x+ 4.8,newWall.position.y +2.5,newWall.position.z),
-      position: new CANNON.Vec3(newWall.position.x,newWall.position.y +2.5,newWall.position.z),
-      shape: EWshape,
-      // material: defaultMaterial
-      });
-      //body.position.copy(position);
-      ///body.addEventListener('collide',playHitSound);
-      world.addBody(body); 
-      incCellObj.ewCol = body;    
-    }
-  );
-}*/
-
-
-/*
-function BuildNWall(xPos,zPos,incCellObj)
-{  
-  let loadString = RetLoadString();
- 
-  gltfLoader.load(
-    loadString,
-    //'assets/eWall.gltf',
-    (gltf) =>
-    {
-      const newWall = gltf.scenes[0].children[0];
-      //const newEWall = gltf.scene.children[0];
-      //const newEWall = gltf.scenes[0].children[0];
-      newWall.position.x = xPos*10;
-      newWall.position.y = 0;
-      newWall.position.z = ((zPos*10)*-1)-4.8;  
-      newWall.scale.set(1,1,1);            
-      scene.add(newWall);
-
-      //incCellGroup.add(newEWall); 
-      incCellObj.nwObj = newWall;
-      //incCellObj.cellG.add(newWall);
-      
-      
-      //const NWshape = new CANNON.Box(new CANNON.Vec3(.48,2.5,5));  
-      const body = new CANNON.Body({
-      mass: 0,
-      position: new CANNON.Vec3(newWall.position.x,newWall.position.y +2.5,newWall.position.z),
-      
-      shape: NWshape,
-      // material: defaultMaterial
-      });
-      body.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),Math.PI*.5)
-      //body.position.copy(position);
-      ///body.addEventListener('collide',playHitSound);
-      world.addBody(body);  
-      incCellObj.nwCol = body;    
-    }
-  );
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function RawMazeBuild()
-{
-  //const startT = Date.now();
-
-  curTile = (curX*mWidth)+curY;   
- 
-  //this should be block units
-  for(let row = 0; row<mWidth; row++)
-  {
-    for(let column = 0; column<mLength; column++)
-    { 
-      
-      //const cellGroup = new THREE.Group();
-      //scene.add(cellGroup);
-
-      let colObj = {
-        //cellG: cellGroup,
-        tileObj: null,
-        nwObj: null,
-        ewObj: null,
-        tileCol: null,
-        nwCol: null,
-        ewCol: null,
-        tileTypeId: 15,
-        tileOccupantId: 0
-      };
-      
-
-
-
-
-      //for instancing
-      //dummyObj.position.set(row*10+4.8, 0, (column*10)*-1);
-      //dummyObj.rotation.x = Math.PI / 2;
-      //dummyObj.rotation.z = Math.PI / 2;
-      //dummyObj.updateMatrix();
-      //instancedEMesh.setMatrixAt( row*mWidth+column, dummyObj.matrix);
-      
-      //for instancing
-      //
-
-
-
-
-
-
-
-
-
-      
-      BuildTile(row,column,colObj);
-      //BuildEWallInstanced(row,column,colObj,dummyObj);
-      BuildEWall(row,column,colObj);
-      BuildNWall(row,column,colObj);
-        
-
-      //cellArray.push(cellGroup);
-      cellArrayNew.push(colObj);
-    }
-    instancedEMesh.instanceMatrix.needsUpdate = true;
-    //deduct from entrance
-    
-
-  }
-  
-
-
-
-  //place posts
-  for(let row = 0;row<mWidth+1;row++)
-  {
-    for(let column = 0;column<mLength+1;column++)
-    {
-      gltfLoader.load(
-        'assets/pillar.glb',
-        (gltf) =>
-        {
-          const newPost = gltf.scenes[0].children[0];
-          newPost.position.x = (row*10)-5.1;
-          newPost.position.y = 0;
-          newPost.position.z = ((column*10)-5.1)*-1; 
-          newPost.scale.set(1,1,1);             
-          scene.add(newPost);         
-        }
-      );
-    }
-  }
-  // place posts  
-
-
-  //edge walls front
-  for(let row = 0;row<mWidth;row++)
-  {
-    if(row == entX) // this is the entrance
-    {
-      continue;
-    }  
-
-    let loadString1 = RetLoadString();    
-
-    gltfLoader.load(
-      loadString1,
-      //'assets/sWall.gltf',
-      (gltf) =>
-      {
-        const newSWall = gltf.scenes[0].children[0];        
-        newSWall.position.x = row*10;
-        newSWall.position.y = 0;
-        newSWall.position.z = 4.8;  
-        newSWall.scale.set(1,1,1),            
-        scene.add(newSWall); 
-        
-        const body = new CANNON.Body({
-          mass: 0,
-          position: new CANNON.Vec3(newSWall.position.x,newSWall.position.y +2.5,newSWall.position.z),
-          
-          shape: NWshape
-          // material: defaultMaterial
-        });
-        body.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),Math.PI*.5);
-         
-        world.addBody(body);         
-      }
-    );
-  }
-
-
-  //left side walls
-  for(let column = 0;column<mLength;column++)
-  {    
-    let loadString = RetLoadString();
-
-    gltfLoader.load(
-      loadString,
-      //'assets/wWall.gltf',
-      (gltf) =>
-      {
-        const newWWall = gltf.scenes[0].children[0];
-        newWWall.position.x = -4.8; // 
-        newWWall.position.y = 0;
-        newWWall.position.z = ((column*10)*-1); 
-        newWWall.rotation.z = Math.PI / 2;
-        newWWall.scale.set(1,1,1);
-        scene.add(newWWall);  
-        
-        const body = new CANNON.Body({
-          mass: 0,
-          position: new CANNON.Vec3(newWWall.position.x,newWWall.position.y +2.5,newWWall.position.z),
-          shape: EWshape
-          // material: defaultMaterial
-        });          
-        world.addBody(body); 
-      }
-    );
-  }
-  //edge walls
-  
-
-
-   Visited.push(curTile);
-   theStack.push(curTile);
-  
-  
-   //const endT = Date.now();
-   //console.log(endT - startT);  
-};*/
-
-
-
-
-/*
-function TakeAStep()
-{ 
-  const nX = Math.floor(curTile/mWidth);
-  const nY = (curTile%mWidth);
-
-  const dir = Math.floor((Math.random() * 4));
-
-  
-  
-
-  //cell to the west ---to the left 
-  if(dir == 0  && (nX-1)>=0)
-  {    
-    if(!Visited.includes(((nX-1)*mWidth)+nY))
-    {       
-      cellArrayNew[curTile].tileTypeId -= 2;// - 2 for west wall on this cell
-
-      curX -=1;
-      curTile = (curX*mWidth)+curY;      
-
-      Visited.push(curTile);
-      theStack.push(curTile);
-      
-     // for(let i =0;i<cellArrayNew[curTile].cellG.children.length;i++)
-      //{
-        //if(cellArrayNew[curTile].cellG.children[i].name == "eWall")
-        if(cellArrayNew[curTile].ewObj !== null)
-        {
-          //var toGo2 = cellArrayNew[curTile].cellG.children[i];
-          var toGo2 = cellArrayNew[curTile].ewObj;
-          //cellArrayNew[curTile].cellG.remove(toGo2); 
-          scene.remove(toGo2);     
-          cellArrayNew[curTile].ewObj = null;    
-          world.remove(cellArrayNew[curTile].ewCol);
-          //break;
-        }        
-      //}
-      cellArrayNew[curTile].tileTypeId -= 8;// -8 for east wall on west cell  
-    }
-    return;
-  }
-  // cell to the north
-  if(dir == 1 && (nY +1) < mLength)
-  {    
-    if(!Visited.includes((nX*mWidth)+(nY+1)))
-    {  
-      cellArrayNew[curTile].tileTypeId -= 4;      
-
-      //for(let i =0;i<cellArrayNew[curTile].cellG.children.length;i++)
-     // {        
-        //if(cellArrayNew[curTile].cellG.children[i].name == "nWall")
-        if(cellArrayNew[curTile].nwObj !== null)
-        {        
-          var toGo2 = cellArrayNew[curTile].nwObj;
-          scene.remove(toGo2);        
-          cellArrayNew[curTile].nwObj = null;
-          world.remove(cellArrayNew[curTile].nwCol);          
-         // break;
-        }       
-      //}  
-
-      curY += 1;
-      curTile = (curX*mWidth)+curY;
-      cellArrayNew[curTile].tileTypeId -= 1; 
-      Visited.push(curTile);
-      theStack.push(curTile);  
-    }
-      return;    
-  }
-
-    //cell to the east -- to the right
-  if(dir == 2 && (nX +1) < mLength)
-  {    
-    if(!Visited.includes(((nX+1)*mWidth)+(nY)))
-    {
-      cellArrayNew[curTile].tileTypeId -= 8;      
-
-      //for(let i =0;i<cellArrayNew[curTile].cellG.children.length;i++)
-      //{
-        //if(cellArrayNew[curTile].cellG.children[i].name == "eWall")
-        if(cellArrayNew[curTile].ewObj !== null)
-        {            
-          //var toGo2 = cellArrayNew[curTile].cellG.children[i];
-          var toGo2 = cellArrayNew[curTile].ewObj;
-          //cellArrayNew[curTile].cellG.remove(toGo2);  
-          scene.remove(toGo2);
-          cellArrayNew[curTile].ewObj = null;
-          world.remove(cellArrayNew[curTile].ewCol);            
-          //break;
-        }         
-      //} 
-      curX += 1;
-      curTile = (curX*mWidth)+curY;
-      cellArrayNew[curTile].tileTypeId -= 2; 
-      Visited.push(curTile);
-      theStack.push(curTile);   
-    }
-      return;
-  }
-    //cell to the south
-  if(dir == 3 && (nY-1)>=0)
-  { 
-    if(!Visited.includes((nX*mWidth)+(nY-1)))
-    {
-      cellArrayNew[curTile].tileTypeId -= 1;
-
-      curY -= 1;
-      curTile = (curX*mWidth)+curY;       
-
-      Visited.push(curTile);
-      theStack.push(curTile);
-
-      //for(let i =0;i<cellArrayNew[curTile].cellG.children.length;i++)
-      //{
-        if(cellArrayNew[curTile].nwObj !== null)
-        {        
-          var toGo2 = cellArrayNew[curTile].nwObj;
-          scene.remove(toGo2);        
-          cellArrayNew[curTile].nwObj = null;
-          world.remove(cellArrayNew[curTile].nwCol);          
-          //break;
-        }        
-      //}   
-      cellArrayNew[curTile].tileTypeId -= 4; 
-    }
-      return;
-  }  
-} */
-
-
-/*
-function ProbeNeighbor()
-{   
-  neighborCount = 0;
-
-  const nX = Math.floor(curTile/mWidth);
-  const nY = (curTile%mWidth);
-
-  
-  //checking east
-  if((nX-1)>= 0)
-  {    
-    if(!Visited.includes(((nX-1)*mWidth)+nY))
-    {
-      neighborCount += 1;
-    }
-  }
-  //checking north
-  if((nY+1)<mLength)
-  {    
-    if(!Visited.includes((nX*mWidth)+(nY+1)))
-    {
-      neighborCount += 1;
-    }
-  }
-  //checking west  
-  if((nX+1)<mWidth)
-  {    
-    if(!Visited.includes(((nX+1)*mWidth)+nY))
-    {
-      neighborCount += 1;
-    }
-  }
-  //checking south
-  {
-    if((nY-1)>=0)
-    {      
-      if(!Visited.includes((nX*mWidth)+(nY-1)))
-      {
-        neighborCount += 1;
-      }
-    }
-  }  
-}*/
-
-/*
-function MazeLoop()
-{  
-  const prev = curTile;    
-
-  ProbeNeighbor();    
-  if(neighborCount>0) //can move forward
-  {
-    TakeAStep();
-    CheckFurthestPoint();
-    recSteps = 0;
-  }
-
-  if(neighborCount == 0) //recurse
-  {        
-    theStack.pop();    
-    if(theStack.length>0)
-    {
-      curTile = theStack[theStack.length-1];
-      curX = Math.floor(curTile/mWidth);
-      curY = (curTile%mWidth);
-      recSteps++;
-    }
-  }
-
-  //charSphere.position.x = curX*10;
-  //charSphere.position.z = (curY*10)*-1;
-  
-
-  
-  if(theStack.length>0)
-  {
-    MazeLoop();
-  }
-
-  
-
-  if(theStack.length == 0)
-  {
-    const furX = Math.floor(furthestPoint/mWidth);
-    const furY = (furthestPoint%mWidth);
-    //place portal here
-
-    //sphere3.position.x = furX*10;
-    //sphere3.position.z = (furY*10)*-1;
-  }
-};*/
-
-/*
-function CarveMaze()
-{  
-
-  console.log(cellArray[curTile].children);
-
-    
-    
-    if(theStack.length > 0)// guard goblins placed
-		{
-			MazeLoop ();			
-    }
-
-
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////Physics==================================================================
-/*
-//utils
-
-//sounds
-const hitSound = new Audio('assets/sounds/button-press.ogg');
-playHitSound = (collision) =>
-{ 
-  const impactStrength = collision.contact.getImpactVelocityAlongNormal();
-
-  if(impactStrength > 1)
-  {
-    hitSound.volume = impactStrength/10;
-    hitSound.currentTime = 0;
-    hitSound.play();
-  }
-};
-//sounds
-
-
-const objectsToUpdate = [];
-
-const debugObject = {};
-debugObject.createSphere = () =>
-{
-  createSphere(
-    Math.random() *.5,
-    {
-      x: (Math.random()-.5)*3,
-      y:3,
-      z: (Math.random()-.5)*3
-    });
-};
-
-debugObject.createBox = () =>
-{
-  createBox(
-    Math.random()*2,
-    Math.random()*2,
-    Math.random()*2,
-    {
-      x:(Math.random()-.5)*3,
-      y:3,
-      z:(Math.random()-.5)*3
-    }
-  );
-};
-
-debugObject.reset = () =>
-{
-  for(const object of objectsToUpdate)
-  {
-    object.body.removeEventListener('collide', playHitSound);
-    world.removeBody(object.body);
-    scene.remove(object.mesh);
-  }
-};
-
-
-dGui.add(debugObject,'createSphere');
-dGui.add(debugObject,'createBox');
-dGui.add(debugObject,'reset');
-
-
-const sphereGeometry = new THREE.SphereBufferGeometry(1,20,20);
-const genBox = new THREE.BoxBufferGeometry(1,1,1);
-
-const sphereMaterial = new THREE.MeshStandardMaterial({
-  metalness: .3,
-  roughness: .4      
-});
-
-const createSphere = (radius, position) =>
-{
-  const mesh = new THREE.Mesh(sphereGeometry,    
-    sphereMaterial
-  );
-
-  mesh.castShadow = true;
-  mesh.scale.set(radius,radius,radius);
-  mesh.position.copy(position);
-  scene.add(mesh);
-
-  const shape = new CANNON.Sphere(radius);   
-  const body = new CANNON.Body({
-    mass: 1,
-    position: new CANNON.Vec3(0,0,0),
-    shape: shape,
-    material: defaultMaterial
-  });
-  body.position.copy(position);  
-  world.addBody(body);  
-
-  objectsToUpdate.push({
-    mesh: mesh,
-    body: body
-  });
-};
-
-const createBox = (width,height,depth,position) =>
-{
-  const mesh = new THREE.Mesh(genBox,    
-    sphereMaterial
-  );
-  mesh.castShadow = true;
-  mesh.scale.set(width,height,depth);
-  mesh.position.copy(position);
-  scene.add(mesh); 
-
-  const shape = new CANNON.Box(new CANNON.Vec3(width/2,height/2,depth/2));   
-  const body = new CANNON.Body({
-    mass: 1,
-    position: new CANNON.Vec3(0,0,0),
-    shape: shape,
-    material: defaultMaterial
-  });
-  body.position.copy(position);
-  body.addEventListener('collide',playHitSound);
-  world.addBody(body);  
-
-  objectsToUpdate.push({
-    mesh: mesh,
-    body: body
-  });
-};
-//utils
-
-
-
-const world = new CANNON.World();
-world.broadPhase = new CANNON.SAPBroadphase(world);
-world.allowSleep = true;
-world.gravity.set(0,-9.82,0);
-
-
-//const concreteMaterial = new CANNON.Material('concrete');
-//const plasticMaterial = new CANNON.Material('plastic');
-
-
-const defaultMaterial = new CANNON.Material('default');
-
-
-//const concretePlasticContactMaterial = new CANNON.ContactMaterial(
-  //concreteMaterial,
-  //plasticMaterial,
-  //{
-   // friction: 0.1,
-   // restitution: 0.7
- // }
-//);
-
-const defaultContactMaterial = new CANNON.ContactMaterial(
-  defaultMaterial, 
-  defaultMaterial, 
-  {
-    friction: 0.1,
-    restitution: 0.7
-  }
-);
-
-
-world.addContactMaterial(defaultContactMaterial);
-
-
-/*
-const sphereShape = new CANNON.Sphere(.5);
-const sphereBody = new CANNON.Body({
-  mass: 1,
-  position: new CANNON.Vec3(0,3,0),
-  shape: sphereShape,
-  material: defaultMaterial
-});
-
-//world.defaultContactMaterial = defaultContactMaterial;
-
-sphereBody.applyLocalForce(new CANNON.Vec3(150,0,0), new CANNON.Vec3(0,0,0));
-world.addBody(sphereBody);*/
-
-/*
-const floorShape = new CANNON.Plane();
-const floorBody = new CANNON.Body();
-floorBody.mass = 0;
-floorBody.addShape(floorShape);
-floorBody.material = defaultMaterial;
-floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(-1,0,0), Math.PI * .50);
-world.addBody(floorBody);
-
-
-
-const testMat = new THREE.MeshMatcapMaterial();
-testMat.matcap = matCapTexture;
-const groundMat = new THREE.MeshStandardMaterial();
-*/
-//createSphere(0.5,{x:0,y:3,z:0});
-
-
-
-
-/*
-const sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(.5,16,16), testMat);
-sphere.castShadow = true;
-sphere.position.y = .5;
-scene.add(sphere);*/
-
-
-/*
-const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(10,10), groundMat);
-plane.receiveShadow = true;
-scene.add(plane);
-plane.position.y = 0;
-plane.rotation.x = Math.PI * -.5;
-*/
-////Physics==================================================================
-
-
-
-
-////importing models==================================================================
-/*
-const gltfLoader = new GLTFLoader();
-
-gltfLoader.load(
-  'assets/models/FlightHelmet/glTF/FlightHelmet.gltf',
-  (gltf) =>
-  {
-    //scene.add(gltf.scene.children[0]);
-    /*
-    while(gltf.scene.children.length)
-    {
-      scene.add(gltf.scene.children[0]);
-    }*/
-
-    /*
-    const children = [...gltf.scene.children];
-    
-    for(let i = 0;i<children.length;i++)
-    {    
-      children[i].scale.set(5,5,5);     
-      scene.add(children[i])
-    }*
-    
-    //console.log(gltf.scene);
-
-     //scene.add(gltf.scene);
-  }
-);
-
-const floor = new THREE.Mesh(
-  new THREE.PlaneBufferGeometry(10,10),
-  new THREE.MeshStandardMaterial({
-    color: '#444444',
-    metalness:0,
-    roughness: 0.5
-  })
-);
-scene.add(floor);
-floor.position.y = 0;
-floor.rotation.x = Math.PI * -.5;
-*/
-////importing models==================================================================
-
-
-
-
-
-
-
-/*
-////cursor==================================================================
-const cursor = {x:0,y:0};
-
-window.addEventListener('mousemove',(event)=>{
-  cursor.x = event.clientX/sizes.width - 0.5;
-  cursor.y = event.clientY/sizes.height - 0.5; 
-});*/
-////cursor==================================================================
-
-
-
-
-////to go and leave full screen==================================================================
-/*
-window.addEventListener('dblclick', ()=>
-{
-  const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
-
-  if(!fullscreenElement)
-  {
-    if(canvas.requestFullscreen)
-    {
-      canvas.requestFullscreen();
-    }
-    else if(canvas.webkitRequestFullscreen)
-    {
-      canvas.webkitRequestFullscreen();
-    }   
-  }
-  else
-  {
-    if(document.exitFullscreen)
-    {
-      document.exitFullscreen();
-    }
-    else if(document.webkitExitFullscreen)
-    {
-      document.webkitExitFullscreen();
-    }
-  }
-});*/
-////full screen==================================================================
 
 
 
