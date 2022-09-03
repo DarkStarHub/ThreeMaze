@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    
+    <link rel="stylesheet" href="css/styles.css"></head>
+    <script src="js/stats.min.js"></script>
+    <title>HTML</title>
+<body>
+    <canvas class="webgl"></canvas>
+
+    <div>
+        <button type="button" id="reset" class="reloadButton --resetImg" ></button>   
+    </div>
+
+    <div class="menu --flexColAlign">
+        <button type="button" id="options" class="menu__gear --gearImg" ></button> 
+        <div class="menu__assembly --elementMask">
+            <div class="menu__main --flexColAlign">
+                <div class="menu__button-box --flexColAlign">
+                    <div class="menu__button-bar --flexRowAlign">
+                        <div class="chevronCommon" id="ccCL">
+                            <div class="lChevButton" id="ccL"></div>
+                        </div>
+                        <div class="MBDispBox">
+                           <div class="--dispMenuFont" id="ccDisp">Red</div> 
+                        </div>                        
+                        <div class="chevronCommon"id="ccCR" >
+                            <div class="rChevButton" id="ccR"></div>
+                        </div>
+                    </div>
+                    <div class="MBLabelBox">
+                        <div class="--smallMenuFont">Char Color</div>
+                    </div>
+                </div>
+                <div class="menu__button-box --flexColAlign">
+                    <div class="menu__button-bar --flexRowAlign">
+                        <div class="chevronCommon" id="envCL">
+                            <div class="lChevButton" id="envL"></div>
+                        </div>
+                        <div class="MBDispBox">
+                            <div class="--dispMenuFont" id="envDisp">Day</div>
+                        </div>
+                        <div class="chevronCommon"id="envCR" >
+                            <div class="rChevButton" id="envR"></div>
+                        </div>
+                    </div>
+                    <div class="MBLabelBox">
+                        <div class="--smallMenuFont">Environment</div>
+                    </div>
+                </div> 
+                <div class="menu__button-box --flexColAlign">
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="100" value="100" class="vSlider" id="myRange">                                     
+                    </div>
+                    <div class="MBLabelBox noMarginTop">
+                        <div class="--smallMenuFont">Sound</div>  
+                    </div> 
+                </div>
+                <div class="menu__button-box --flexColAlign">
+                    <div class="trapTogAssembly">
+                        <div class="t1">
+                            <div class="--dispMenuFont">Traps</div>
+                        </div>
+                        <div class="t2">
+                            <label class="trapSwitch">
+                            <input id="trapTog" type="checkbox">
+                            <span class="trapSlider round"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__button-box --flexColAlign"></div>
+            </div>  
+        </div>              
+    </div>
+    
+
+
+    <div class="ctrls --turns --flexRowCent">
+        <div class="ctrls__buttonBox --flexColCent">         
+            <button type="button" id="lB" class="ctrls__buttonBox__cntButton --leftImg" ></button>          
+        </div>        
+        <div class="ctrls__buttonBox --flexColCent">              
+            <button type="button" id="rB" class="ctrls__buttonBox__cntButton --rightImg" ></button>            
+        </div>        
+    </div>
+
+    <div class="ctrls --forwards --flexRowCent">        
+        <div class="ctrls__buttonBox --flexColCent">                            
+            <button type="button" id="uB" class="ctrls__buttonBox__cntButton --upImg" ></button>           
+         </div>         
+         <div class="ctrls__buttonBox --flexColCent">                         
+            <button type="button" id="dB" class="ctrls__buttonBox__cntButton --downImg" ></button>            
+         </div> 
+    </div>
+    
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>  
+    <!--<script src="https://cdn.tutorialjinni.com/cannon.js/0.6.2/cannon.min.js"></script>-->
+    
+    <script src="js/howler.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/RGBELoader.js"></script>
+    <script src="js/cannon.min.js"></script> 
+    <script src="js/cannonDebugger.js"></script>
+    <!--<script src="js/FlyControls.js"></script>-->
+    <script src="js/fflate.min.js" ></script>
+    <script src="js/NURBSCurve.js" ></script>
+    <script src="js/FBXLoader.js"></script>
+    <script src="js/GLTFLoader.js"></script>
+
+    <!--<script src="js/ShaderPass.js" ></script>
+    <script src="js/MaskPass.js"></script>
+    <Script src="js/EffectComposer.js"></Script>-->
+    
+    <!--<script src='js/TextGeometry.js'></script>-->
+    <!--<script src='js/FontLoader.js'></script>-->
+    <!--<script src="js/OrbitControls.js"></script>-->
+    <!--<script src="js/script.js"></script>-->
+    <script src="js/scriptInst3.js"></script>
+</body>
+
+</html>
