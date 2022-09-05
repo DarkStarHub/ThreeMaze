@@ -2189,7 +2189,7 @@ BuildEntrance();
 
 
 //auto build
-LoadAll();
+//LoadAll();
 
 //manual buildout
 //CreatePlayerObj();
