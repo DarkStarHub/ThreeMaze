@@ -322,9 +322,8 @@ var spookLoop = new Howl({
 
 
 var footSteps = new Howl({  
-  src:['assets/Audio/runLoop.ogg'],
-  loop: true, 
-  html5: true
+  src:['assets/Audio/footLoop6.mp3'],
+  loop: true,  
 }); 
 
 
