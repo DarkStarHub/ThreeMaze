@@ -12,4 +12,6 @@ and apply new tech rapidly and effectively.
 # Navigating the project
 The script.js file in the JS folder contains all the game logic. The other files are required for the previously mentioned libraries, and the minified libraries themselves.
 
-
+# Conclusions
+All in all, this was a very fun project, and I'd love the opportunity to work with Three.js or another 3D library again in the future. There are a substantial amount of meshes
+involved and rendering a 10 x 10 cell maze, as well as all of the geometry involved that is not visible, creating bounds for the physics. I used optimizations such as
