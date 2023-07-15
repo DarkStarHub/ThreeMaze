@@ -7,4 +7,9 @@ and apply new tech rapidly and effectively.
 - No plugins or game engines, just HTML, CSS, Javascript and Javascript libraries. 
 - I chose to learn and implement Three.js to render the 3D assests, and I chose to learn and implement Cannon.js to handle the physics. 
 - I drew on previous experience with art packages (including myaya and blender) to create the 3D art assests, while familiarizing myself with the 3d libraries.
+- My previous experience with building mobile games made the development rapid, and I found Three.js and Cannon.j worked well together and were easy to use.
+
+# Navigating the project
+The script.js file in the JS folder contains all the game logic. The other files are required for the previously mentioned libraries, and the minified libraries themselves.
+
 
