@@ -1,5 +1,13 @@
 https://darkstarhub.github.io/ThreeMaze/
 
+# Summary of the project
+In this project, my objective was twofold: to explore a new and intriguing library, showcasing my creativity and rapid tech adoption skills. Eschewing plugins or game engines, I leveraged HTML, CSS, and JavaScript, alongside the powerful Three.js library for rendering 3D assets and Cannon.js for physics.
+
+The maze, intricately carved using a recursive backtracker algorithm, added a unique challenge for players on each run. My familiarity with art packages like Maya and Blender facilitated the creation of 3D assets, seamlessly integrating them into the project. Having a background in mobile game development expedited the process, with Three.js and Cannon.js proving to be a seamless combination for rendering and physics.
+
+To enhance the immersive experience, I incorporated Howler.js for sound handling, creating 3D sound effects like clap traps and portal hum. The optimization phase was crucial, and mesh instancing for maze walls emerged as a performance game-changer. Through this endeavor, I not only demonstrated my proficiency in leveraging advanced features of Three.js but also showcased my ability to optimize and deliver a smooth, 60-frames-per-second experience. This project stands as a testament to my passion for learning, creative application of technology, and efficient problem-solving in web development.
+
+
 # How I worked on this project
 
 My goal was to learn an interesting new library to build something out of the ordinary to demonstrate creativity and ability to learn
