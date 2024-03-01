@@ -27,4 +27,10 @@ The script.js file in the JS folder contains all the game logic. The other files
 # Conclusions
 All in all, this was a very fun project, and I'd love the opportunity to work with Three.js or another 3D library again in the future. There are a substantial amount of meshes involved in rendering a 10 x 10 cell maze, as well as all of the geometry involved that is not visible, creating bounds for the physics. I used optimizations such as texture loaders and mesh instancing to increase performance. It is showing a full 60 frames per sec in all devices and browsers I have tested. 
 
-I especially enjoyed getting to learn the new things required to get the job done, and doing something a little out of the box. 
+The best part for me was the learning process. Figuring out the new things needed to make this project work was a rewarding challenge. Doing something a bit different from the usual was exciting, and it showcased my ability to adapt and keep learning in the ever-evolving world of web development. I'm enthusiastic about using these skills in future projects, whether it's with Three.js or other 3D libraries, as this experience fueled my passion for pushing the limits of web development.
+
+
+
+
+
+
