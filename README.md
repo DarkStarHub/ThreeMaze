@@ -22,7 +22,7 @@ and apply new tech rapidly and effectively.
 - After everything was up and running, I began optimizing performance. One of the biggest performance gains came from using mesh instancing for the walls of the maze. Was able to get a full 60 frames per sec after using the more advanced features Three.js had to offer. 
 
 # Navigating the project
-The script.js file in the JS folder contains all the game logic. The other files are required for the previously mentioned libraries, and the minified libraries themselves. I have unminified verisions of the JS to provide, of course, but the current live version is minified for performance.
+The script.js file in the JS folder contains all the game logic. The other files are required for the previously mentioned libraries, and the minified libraries themselves.
 
 # Conclusions
 All in all, this was a very fun project, and I'd love the opportunity to work with Three.js or another 3D library again in the future. There are a substantial amount of meshes involved in rendering a 10 x 10 cell maze, as well as all of the geometry involved that is not visible, creating bounds for the physics. I used optimizations such as texture loaders and mesh instancing to increase performance. It is showing a full 60 frames per sec in all devices and browsers I have tested. 
