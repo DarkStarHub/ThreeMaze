@@ -1,5 +1,8 @@
 https://darkstarhub.github.io/ThreeMaze/
 
+# Purpose
+The purpose of this project is to demonstrate my javascript skills. Building a 3D game in a browser with javascript, while utilizing no plugins or 3rd party game engine is not trivial.  
+
 # Summary of the project
 In this project, my objective was twofold: to explore a new and intriguing library, showcasing my creativity and rapid tech adoption skills. Eschewing plugins or game engines, I leveraged HTML, CSS, and JavaScript, alongside the powerful Three.js library for rendering 3D assets and Cannon.js for physics.
 
